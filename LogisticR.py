@@ -10,3 +10,4 @@ import math as mt
 
 
 if __name__=='__main__':
+    pass
