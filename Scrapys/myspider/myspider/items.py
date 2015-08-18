@@ -8,7 +8,10 @@
 import scrapy
 
 
-class MyspiderItem(scrapy.Item):
+class Tieba_Item(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    #page=scrapy.Field()
+    #user_name=scrapy.Field()
+    image=scrapy.Field()
+
