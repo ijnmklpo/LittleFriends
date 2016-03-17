@@ -3,8 +3,8 @@
 # @Date:   2016-03-11 10:10:04
 # @Last Modified by:   ijnmklpo
 # @Last Modified time: 2016-03-11 11:21:03
+# @Desc:不是我的
 
-# coding: UTF-8
 from __future__ import division
 import numpy as np
 import scipy as sp

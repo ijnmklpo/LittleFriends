@@ -18,10 +18,11 @@
 
 import numpy as np
 import math as mt
+import time
 
 ALPHA=0.5	#在计算弱分类器权值的时候用于权衡权值的计算（如果ALPHA很大，则如果出现了一个分类很准确的分\
 			#类器，其权重会非常大，若出现一个分类很糟糕的分类器，其权值会非常小。因此ALPHA小的话会更平滑）
-STEP_NUM=20.0	#在
+STEP_NUM=100.0	#在
 
 		
 
@@ -48,9 +49,9 @@ def AdaboostMain(data_set,label_set,classifier_num):
 	data_right_vector=[1.0/data_num for i in xrange(data_num)]	#初始化数据权值
 	for i in xrange(classifier_num):
 		print 'iteration:'+str(i+1)+'---------------------'
-
+		start_time=time.time()
 		#可替换模块-----------------------------------------------
-		error_with_right,classifier=LessOrGreaterDecisionStump(data_set,label_set,data_right_vector)
+		error_with_right,classifier=IsOrNotDecisionStump(data_set,label_set,data_right_vector)
 		#---------------------------------------------------------
 
 		classifier_right=ALPHA*(mt.log((1-error_with_right))-mt.log(error_with_right))
@@ -58,8 +59,9 @@ def AdaboostMain(data_set,label_set,classifier_num):
 		claasifier_list.append(classifier)
 
 		#可替换模块-----------------------------------------------
-		data_right_vector=LessOrGreaterDataRightUpdate(data_set,label_set,data_right_vector,classifier)
+		data_right_vector=IsOrNotDataRightUpdate(data_set,label_set,data_right_vector,classifier)
 		#---------------------------------------------------------
+		print 'Use time:',time.time()-start_time
 		print 'Finish this iteration!--------------------'
 	print 'Finish adaboost training!'
 	return claasifier_list
